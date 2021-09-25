@@ -1,44 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    >
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="itemData"
+            type="com.example.rss24h.RSSData" />
+    </data>
+
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="124dp"
-        >
+        android:orientation="horizontal">
+
         <ImageView
             android:id="@+id/img"
-            android:src="@drawable/iconnew"
             android:layout_width="124dp"
-            android:layout_height="124dp"/>
+            android:layout_height="124dp"
+            loadImage="@{itemData.img}"
+            android:src="@drawable/arshavin" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/tvTitle"
-                android:text="title"
-                android:textColor="#09E6D2"
-                android:textSize="20sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:text="@{itemData.title}"
+                android:textColor="#09E6D2"
+                android:textSize="20sp" />
+
             <TextView
                 android:id="@+id/tvPubDate"
-                android:text="pubDate"
-                android:textColor="#E6093D"
-                android:textSize="12sp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="@{itemData.pubDate}"
+                android:textColor="#E6093D"
+                android:textSize="12sp" />
+
             <TextView
                 android:id="@+id/tvDescription"
-                android:text="description"
-                android:textColor="#FFEB3B"
-                android:textSize="24sp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="@{itemData.description}"
+                android:textColor="#FFEB3B"
+                android:textSize="24sp" />
         </LinearLayout>
     </LinearLayout>
 

@@ -1,28 +1,34 @@
 package com.example.rss24h
 
+import android.content.Context
 import android.os.AsyncTask
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.example.rss24h.databinding.ActivityMainBinding
 import org.w3c.dom.Element
 import java.net.URL
 import javax.xml.parsers.DocumentBuilderFactory
 
+
 class MainActivity : AppCompatActivity() {
     //khai bao list data
     private var rssData = mutableListOf<RSSData>()
-    private lateinit var rcRSS: RecyclerView
-
-
+//    private lateinit var rcRSS: RecyclerView
+    private lateinit var binding: ActivityMainBinding // truy cập rcRss bằng binding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil
+            .setContentView(this, R.layout.activity_main)
         createAsy()
-        rcRSS = findViewById(R.id.rc_RSS)
-        rcRSS.layoutManager= LinearLayoutManager(this)
-        rcRSS.adapter = RSSAdapter(rssData, this)
+        //truy cập rcRSS bằng binding
+        binding.rcRSS.layoutManager= LinearLayoutManager(this)
+        binding.rcRSS.adapter = RSSAdapter(rssData, this)
     }
+
     private fun createAsy(){
         val asy = object : AsyncTask<Void, Void, Void>(){
             override fun doInBackground(vararg params: Void?): Void? {
@@ -30,7 +36,7 @@ class MainActivity : AppCompatActivity() {
                 return null
             }
             override fun onPostExecute(result: Void?) {
-                rcRSS.adapter?.notifyDataSetChanged()
+                binding.rcRSS.adapter?.notifyDataSetChanged()
             }
         }
         asy.execute()

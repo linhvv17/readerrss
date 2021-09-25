@@ -7,5 +7,6 @@ data class RSSData(var title: String,
                    var pubDate:String,
                    var description: String,
                    var linkOP: String,
-                   var img: String) {
+                   var img: String,
+                   var isClick: Boolean = false) {
 }
